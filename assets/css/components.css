@@ -424,8 +424,11 @@
 
   .footer-mockup {
   display: block;
-  height: 130px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 364px;
   width: auto;
-  margin-top: var(--space-1);
+  z-index: 1;
 }
 }
