@@ -1,0 +1,100 @@
+.solucao {
+  padding-block: var(--space-7);
+  background-color: var(--color-black);
+}
+
+.solucao h2 {
+  color: var(--color-white);
+  max-width: 24ch;
+  margin-bottom: var(--space-6);
+}
+
+.pilares-sequencia {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-6);
+}
+
+.pilar-item {
+  position: relative;
+  padding-left: 2.75rem;
+  padding-block: var(--space-3);
+  border-left: 2px solid rgba(255, 255, 255, 0.16);
+}
+
+.pilar-item:last-child {
+  padding-bottom: 0;
+}
+
+.pilar-numero {
+  position: absolute;
+  left: -15px;
+  top: var(--space-3);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pilar-item h3 {
+  color: var(--color-white);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-1);
+}
+
+.pilar-item p {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--fs-small);
+  margin: 0;
+}
+
+.solucao-fechamento {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 60ch;
+  font-size: 1.0625rem;
+  margin: 0;
+}
+
+.solucao-fechamento strong {
+  color: var(--color-white);
+}
+
+/* ===== Responsivo — Solução =====
+   Breakpoints oficiais em variables.css.
+   A partir de 980px a sequência vira horizontal: a linha que
+   conectava os pilares passa do lado esquerdo pro topo de cada item. */
+
+@media (min-width: 980px) {
+  .pilares-sequencia {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+
+  .pilar-item {
+    flex: 1;
+    padding-left: 0;
+    padding-top: 2.75rem;
+    padding-block-end: 0;
+    border-left: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .pilar-numero {
+    left: 0;
+    top: -15px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .solucao h2 {
+    max-width: 30ch;
+  }
+}

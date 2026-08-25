@@ -1,0 +1,66 @@
+.faq {
+  padding-block: var(--space-7);
+  background-color: var(--color-offwhite);
+}
+
+.faq h2 {
+  margin-bottom: var(--space-5);
+}
+
+.faq-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.faq-item {
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-black);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-red);
+  transition: transform var(--transition-base);
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-graphite);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+/* ===== Responsivo — FAQ =====
+   Breakpoints oficiais em variables.css */
+
+@media (min-width: 820px) {
+  .faq-lista {
+    max-width: 760px;
+  }
+}

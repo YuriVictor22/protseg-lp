@@ -1,0 +1,55 @@
+.problema {
+  padding-block: var(--space-7);
+  background-color: var(--color-white);
+}
+
+.problema h2 {
+  max-width: 20ch;
+  margin-bottom: var(--space-5);
+}
+
+.furos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.furo-card {
+  background-color: var(--color-offwhite);
+  border-left: 4px solid var(--color-red);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+
+.furo-card p {
+  margin: 0;
+  color: var(--color-black);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+.problema-fechamento {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.375rem;
+  line-height: 1.35;
+  color: var(--color-black);
+  max-width: 44ch;
+  margin: 0;
+}
+
+/* ===== Responsivo — Problema =====
+   Breakpoints oficiais em variables.css */
+
+@media (min-width: 760px) {
+  .furos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 980px) {
+  .problema-fechamento {
+    font-size: 1.625rem;
+  }
+}

@@ -1,0 +1,146 @@
+.calculadora {
+  padding-block: var(--space-7);
+  background-color: var(--color-white);
+}
+
+.calculadora-intro {
+  text-align: center;
+  max-width: 560px;
+  margin-inline: auto;
+  margin-bottom: var(--space-5);
+}
+
+.calculadora-intro h2 {
+  margin-bottom: var(--space-2);
+}
+
+.calculadora-intro p {
+  margin: 0;
+}
+
+.calculadora-wizard {
+  max-width: 640px;
+  margin-inline: auto;
+  background-color: var(--color-offwhite);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Barra de progresso ---- */
+.calculadora-progresso {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.progresso-passo {
+  flex: 1;
+  position: relative;
+  padding-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-graphite-light);
+  text-align: center;
+}
+
+.progresso-passo::before {
+  content: '';
+  display: block;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border);
+  margin-bottom: var(--space-1);
+  transition: background-color var(--transition-base);
+}
+
+.progresso-passo.is-active {
+  color: var(--color-red);
+}
+
+.progresso-passo.is-active::before,
+.progresso-passo.is-done::before {
+  background-color: var(--color-red);
+}
+
+/* ---- Perguntas ---- */
+.pergunta {
+  animation: perguntaFadeIn 0.4s ease;
+}
+
+@keyframes perguntaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pergunta h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-3);
+}
+
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.opcao-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-black);
+  transition: border-color var(--transition-fast),
+              background-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.opcao-btn:hover {
+  border-color: var(--color-red);
+  background-color: var(--color-red-light);
+}
+
+.opcao-btn:active {
+  transform: scale(0.97);
+}
+
+.opcao-btn.is-selected {
+  background-color: var(--color-red);
+  border-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.opcao-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-black);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}

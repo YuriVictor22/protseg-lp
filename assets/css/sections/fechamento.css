@@ -1,0 +1,50 @@
+.fechamento {
+  padding-block: var(--space-3);
+  background-color: var(--color-black);
+  text-align: center;
+}
+
+.fechamento-inner {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.fechamento h2 {
+  color: var(--color-white);
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: var(--space-2);
+}
+
+.fechamento p {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: var(--space-4);
+}
+
+.fechamento-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* Nessa seção o fundo é preto, então o botão "ghost" (que por padrão
+   usa borda/texto pretos) precisa de uma versão clara própria daqui */
+.fechamento .btn-ghost {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.fechamento .btn-ghost:hover {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+/* ===== Responsivo — Fechamento =====
+   Breakpoints oficiais em variables.css */
+
+@media (max-width: 480px) {
+  .fechamento-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+}

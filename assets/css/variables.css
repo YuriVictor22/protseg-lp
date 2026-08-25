@@ -1,0 +1,67 @@
+:root {
+  /* ===== Cores ===== */
+  --color-red: #DC2626;
+  --color-red-dark: #B91C1C;
+  --color-red-light: #FEE2E2;
+  --color-black: #0F1115;
+  --color-graphite: #3F4753;
+  --color-graphite-light: #6B7280;
+  --color-offwhite: #F7F5F2;
+  --color-white: #FFFFFF;
+  --color-steel: #1B4B5A;
+  --color-border: #E4E0DA;
+
+  /* ===== Tipografia =====
+     Display: Archivo   -> H1/H2/H3, traços largos e retos (referência: placas de sinalização de alarme)
+     Corpo:   Inter      -> parágrafos, FAQ, texto corrido
+     Mono:    IBM Plex Mono -> números, badges, selos (reforça o lado "tecnologia/monitoramento") */
+  --font-display: 'Archivo', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --fs-h1: clamp(2.25rem, 4vw + 1rem, 3.75rem);
+  --fs-h2: clamp(1.75rem, 2.5vw + 1rem, 2.75rem);
+  --fs-h3: clamp(1.25rem, 1.2vw + 1rem, 1.5rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-mono: 0.8125rem;
+
+  /* ===== Espaçamento (escala base 8px) ===== */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+
+  /* ===== Layout ===== */
+  --container-width: 1200px;
+  --container-padding: var(--space-3);
+  --header-height: 76px;
+
+  /* ===== Bordas e sombras ===== */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 2px 8px rgba(15, 17, 21, 0.06);
+  --shadow-md: 0 12px 32px rgba(15, 17, 21, 0.12);
+
+  /* ===== Transições ===== */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+}
+
+/*
+  BREAKPOINTS OFICIAIS DO PROJETO — usar só estes valores, nunca inventar um novo.
+  Cada arquivo de seção traz suas próprias media queries usando esta régua:
+
+  ≤480px   → celulares pequenos / zoom alto
+  ≥640px   → tablets e celulares largos
+  ≥760px   → grids de 3 colunas
+  ≥820px   → composições amplas (Hero, Solução, Diferencial)
+  ≥980px   → navegação desktop, layouts de 2 colunas
+  ≥1100px  → grids de 5 colunas
+*/

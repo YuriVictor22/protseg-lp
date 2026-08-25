@@ -1,0 +1,155 @@
+.prova-social {
+  padding-block: var(--space-7);
+  background-color: var(--color-white);
+}
+
+/* ---- Selo de reputação ---- */
+.selo-reputacao {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.selo-reputacao li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: var(--fs-small);
+  color: var(--color-graphite);
+}
+
+.selo-reputacao li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-red);
+  font-weight: 700;
+}
+
+/* ---- Depoimentos: carrossel automático ---- */
+.depoimentos-carrossel {
+  margin-bottom: var(--space-6);
+}
+
+.depoimentos-track {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: var(--space-1) var(--space-1) var(--space-2);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.depoimentos-track::-webkit-scrollbar {
+  display: none;
+}
+
+.depoimento-card {
+  flex: 0 0 auto;
+  width: 85%;
+  scroll-snap-align: start;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.depoimento-card::before {
+  content: '"';
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: var(--color-red-light);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+
+.depoimento-card p {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--color-black);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.depoimento-rodape {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.depoimento-estrelas {
+  color: #F5A623;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+.depoimento-card cite {
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--color-red-dark);
+  background-color: var(--color-red-light);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+/* ---- Logos de clientes ---- */
+.clientes-logos {
+  text-align: center;
+}
+
+.clientes-titulo {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-graphite-light);
+  margin-bottom: var(--space-3);
+}
+
+.logos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.logos-grid li {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--color-graphite);
+  opacity: 0.75;
+}
+
+/* ===== Responsivo — Prova Social =====
+   Breakpoints oficiais em variables.css */
+
+@media (min-width: 760px) {
+  .selo-reputacao {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .depoimento-card {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .selo-reputacao {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .depoimento-card {
+    width: 32%;
+  }
+}

@@ -1,0 +1,431 @@
+/* =========================================================
+   Componentes reutilizados em várias seções: botões, header,
+   navegação, menu mobile e o estado do .reveal (a animação em
+   si é ativada via JS — ver main.js, initReveal()).
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  transition: transform var(--transition-fast),
+              background-color var(--transition-base),
+              border-color var(--transition-base),
+              color var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-red-dark);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  border-color: var(--color-black);
+  color: var(--color-black);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+.btn-lg {
+  padding: 1.1rem 2.25rem;
+  font-size: 1rem;
+}
+
+.btn-sm {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+/* ===== Responsivo — Botões =====
+   Breakpoints oficiais em variables.css */
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-lg {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .btn-mobile-esconder {
+    display: none;
+  }
+}
+
+/* =========================================================
+   Header
+   Decisão deliberada: fundo SEMPRE sólido (nunca transparente
+   sobre o Hero), só ganha sombra depois de rolar. Isso evita de
+   raiz o bug do doze-website (logo/X brancos "sumindo" quando o
+   header virava sólido no meio da rolagem) — aqui não existe
+   esse estado transparente pra começo de conversa.
+   ========================================================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: var(--color-white);
+  border-bottom: 1px solid transparent;
+  transform: translateX(0);
+  transition: transform 0.5s ease, box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+/* Ao rolar pra baixo: desliza pra fora pela direita (->).
+   Ao rolar pra cima: reaparece entrando pela esquerda (<-) — não é a
+   mesma animação ao contrário, é um "pulo" instantâneo pro lado
+   esquerdo (via .sem-transicao) seguido de um deslize suave de volta.
+   Tudo controlado via JS em initHeaderScroll(). */
+.site-header.is-hidden-right {
+  transform: translateX(100%);
+}
+
+.site-header.is-hidden-left {
+  transform: translateX(-100%);
+}
+
+.site-header.sem-transicao {
+  transition: none;
+}
+
+.site-header.is-scrolled {
+  box-shadow: var(--shadow-sm);
+  border-bottom-color: var(--color-border);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.logo img {
+  height: 53px;
+  width: auto;
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.main-nav a {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-graphite);
+  transition: color var(--transition-fast);
+}
+
+.main-nav a:hover {
+  color: var(--color-red);
+}
+
+.header-actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ---- Botão hamburguer ---- */
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-black);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base), background-color var(--transition-base);
+}
+
+.menu-icon {
+  position: relative;
+}
+
+.menu-icon::before {
+  position: absolute;
+  top: -7px;
+  left: 0;
+}
+
+.menu-icon::after {
+  position: absolute;
+  top: 7px;
+  left: 0;
+}
+
+/* Estado aberto: hambúrguer vira X (o traço do meio some) */
+.menu-button[aria-expanded="true"] .menu-icon {
+  background-color: transparent;
+}
+
+.menu-button[aria-expanded="true"] .menu-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"] .menu-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Menu mobile ---- */
+.mobile-menu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4) var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.mobile-menu.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-black);
+}
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobile-menu-actions .btn {
+  width: 100%;
+}
+
+/* =========================================================
+   Reveal — fade + slide ao rolar a página.
+   Some por padrão; o main.js (initReveal) adiciona "is-visible"
+   via IntersectionObserver quando o elemento entra na tela.
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsivo — Header/Nav =====
+   Breakpoints oficiais em variables.css */
+
+@media (min-width: 980px) {
+  .main-nav {
+    display: block;
+  }
+
+  .header-actions {
+    display: flex;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* =========================================================
+   Footer
+   Fundo preto, igual ao "Fechamento" — cria uma transição suave
+   entre as duas últimas seções pretas da página. A partir do
+   tablet, ganha uma imagem decorativa "grudada" no canto inferior
+   direito (a mão com o celular mostrando o Instagram).
+   ========================================================= */
+
+.site-footer {
+  position: relative;
+  background-color: var(--color-black);
+  padding-block: var(--space-3);
+}
+
+.footer-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+}
+
+.footer-conteudo nav ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-3);
+}
+
+.footer-conteudo nav a {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--transition-fast);
+}
+
+.footer-conteudo nav a:hover {
+  color: var(--color-white);
+}
+
+.footer-copy-linha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-copy {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.footer-instagram {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color var(--transition-fast);
+}
+
+.footer-instagram:hover {
+  color: var(--color-white);
+}
+
+/* Imagem decorativa: escondida no mobile (não tem espaço sobrando
+   sem brigar com o resto do conteúdo), aparece a partir do tablet */
+.footer-mockup {
+  display: none;
+}
+
+/* ===== Responsivo — Footer =====
+   Breakpoints oficiais em variables.css */
+
+@media (min-width: 760px) {
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-conteudo {
+    flex: 1 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding-right: 340px;
+  }
+
+  .footer-conteudo nav ul {
+    flex-direction: row;
+    gap: var(--space-4);
+  }
+
+  .footer-copy-linha {
+    width: auto;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .footer-mockup {
+  display: block;
+  height: 130px;
+  width: auto;
+  margin-top: var(--space-1);
+}
+}
