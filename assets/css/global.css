@@ -76,6 +76,21 @@ button {
   padding-inline: var(--container-padding);
 }
 
+/* Texto presente no HTML (bom pra SEO e leitor de tela) mas
+   invisível na tela — usado quando o mesmo texto já aparece
+   desenhado dentro de uma imagem, como o H1 da Hero. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Respeita quem pede menos movimento no sistema operacional */
 @media (prefers-reduced-motion: reduce) {
   html {

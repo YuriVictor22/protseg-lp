@@ -46,6 +46,10 @@
   .furos-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .problema {
+    padding-top: calc(var(--space-7) + 220px);
+  }
 }
 
 @media (min-width: 980px) {

@@ -11,13 +11,16 @@
   --color-steel: #1B4B5A;
   --color-border: #E4E0DA;
 
-  /* ===== Tipografia =====
-     Display: Archivo   -> H1/H2/H3, traços largos e retos (referência: placas de sinalização de alarme)
-     Corpo:   Inter      -> parágrafos, FAQ, texto corrido
-     Mono:    IBM Plex Mono -> números, badges, selos (reforça o lado "tecnologia/monitoramento") */
-  --font-display: 'Archivo', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+    /* ===== Tipografia =====
+     Fonte única do projeto: Sora, em pesos diferentes por papel.
+     Display: Sora 700/800 -> H1/H2/H3
+     Corpo:   Sora 400/500 -> parágrafos, FAQ, texto corrido
+     Mono:    Sora 600     -> números, badges, selos (sem ser mono de verdade,
+                              mas usa peso + letter-spacing pra manter o mesmo
+                              efeito visual de "dado técnico" que tínhamos antes) */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Sora', sans-serif;
+  --font-mono: 'Sora', sans-serif;
 
   --fs-h1: clamp(2.25rem, 4vw + 1rem, 3.75rem);
   --fs-h2: clamp(1.75rem, 2.5vw + 1rem, 2.75rem);

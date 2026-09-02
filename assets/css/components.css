@@ -81,22 +81,23 @@
 
 /* =========================================================
    Header
-   Decisão deliberada: fundo SEMPRE sólido (nunca transparente
-   sobre o Hero), só ganha sombra depois de rolar. Isso evita de
-   raiz o bug do doze-website (logo/X brancos "sumindo" quando o
-   header virava sólido no meio da rolagem) — aqui não existe
-   esse estado transparente pra começo de conversa.
+   Mobile: um cartão pequeno flutuante, só com a logo, no canto
+   superior esquerdo, por cima da foto da Hero — sem barra, sem
+   menu, sem botão hambúrguer (decisão do Yuri, LP focada em
+   conversão pelos CTAs da própria página, sem navegação no
+   celular). A partir de 760px volta a ser a barra completa de
+   sempre, com menu e botões de contato.
    ========================================================= */
 
 .site-header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: var(--space-2);
+  left: var(--space-2);
   z-index: 100;
-  height: var(--header-height);
   background-color: var(--color-white);
-  border-bottom: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  padding: 0.4rem 0.9rem;
   transform: translateX(0);
   transition: transform 0.5s ease, box-shadow var(--transition-base), border-color var(--transition-base);
 }
@@ -105,13 +106,17 @@
    Ao rolar pra cima: reaparece entrando pela esquerda (<-) — não é a
    mesma animação ao contrário, é um "pulo" instantâneo pro lado
    esquerdo (via .sem-transicao) seguido de um deslize suave de volta.
+   Usa vw (não %) porque o header muda de tamanho entre mobile
+   (cartão pequeno) e desktop (barra inteira) — % seria relativo ao
+   próprio tamanho dele, que varia; vw garante que sempre sai
+   completamente da tela nos dois formatos.
    Tudo controlado via JS em initHeaderScroll(). */
 .site-header.is-hidden-right {
-  transform: translateX(100%);
+  transform: translateX(120vw);
 }
 
 .site-header.is-hidden-left {
-  transform: translateX(-100%);
+  transform: translateX(-120vw);
 }
 
 .site-header.sem-transicao {
@@ -119,20 +124,17 @@
 }
 
 .site-header.is-scrolled {
-  box-shadow: var(--shadow-sm);
-  border-bottom-color: var(--color-border);
+  box-shadow: var(--shadow-md);
 }
 
 .header-inner {
-  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-3);
 }
 
 .logo img {
-  height: 53px;
+  height: 40px;
   width: auto;
 }
 
@@ -162,110 +164,6 @@
   gap: var(--space-2);
 }
 
-/* ---- Botão hamburguer ---- */
-.menu-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  background-color: transparent;
-  flex-shrink: 0;
-}
-
-.menu-icon,
-.menu-icon::before,
-.menu-icon::after {
-  content: '';
-  display: block;
-  width: 22px;
-  height: 2px;
-  background-color: var(--color-black);
-  border-radius: 2px;
-  transition: transform var(--transition-base), opacity var(--transition-base), background-color var(--transition-base);
-}
-
-.menu-icon {
-  position: relative;
-}
-
-.menu-icon::before {
-  position: absolute;
-  top: -7px;
-  left: 0;
-}
-
-.menu-icon::after {
-  position: absolute;
-  top: 7px;
-  left: 0;
-}
-
-/* Estado aberto: hambúrguer vira X (o traço do meio some) */
-.menu-button[aria-expanded="true"] .menu-icon {
-  background-color: transparent;
-}
-
-.menu-button[aria-expanded="true"] .menu-icon::before {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menu-button[aria-expanded="true"] .menu-icon::after {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* ---- Menu mobile ---- */
-.mobile-menu {
-  position: fixed;
-  top: var(--header-height);
-  left: 0;
-  right: 0;
-  z-index: 99;
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-md);
-  padding: var(--space-4) var(--container-padding);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  transform: translateY(-12px);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
-}
-
-.mobile-menu.is-open {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.mobile-menu ul {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.mobile-menu a {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.125rem;
-  color: var(--color-black);
-}
-
-.mobile-menu-actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.mobile-menu-actions .btn {
-  width: 100%;
-}
-
 /* =========================================================
    Reveal — fade + slide ao rolar a página.
    Some por padrão; o main.js (initReveal) adiciona "is-visible"
@@ -284,7 +182,40 @@
 }
 
 /* ===== Responsivo — Header/Nav =====
-   Breakpoints oficiais em variables.css */
+   Breakpoints oficiais em variables.css.
+   O cartão vira barra completa aqui em 760px, junto com a Hero
+   (que também troca pro modo "foto de fundo em tela cheia" nesse
+   mesmo breakpoint — os dois precisam mudar juntos). Os links do
+   menu e os botões de contato só aparecem a partir de 980px. */
+
+@media (min-width: 760px) {
+  .site-header {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .site-header.is-scrolled {
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    height: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+    justify-content: space-between;
+  }
+
+  .logo img {
+    height: 53px;
+  }
+}
 
 @media (min-width: 980px) {
   .main-nav {
@@ -293,14 +224,6 @@
 
   .header-actions {
     display: flex;
-  }
-
-  .menu-button {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none;
   }
 }
 
@@ -388,7 +311,10 @@
 /* Imagem decorativa: escondida no mobile (não tem espaço sobrando
    sem brigar com o resto do conteúdo), aparece a partir do tablet */
 .footer-mockup {
-  display: none;
+  display: block;
+  height: 130px;
+  width: auto;
+  margin-top: var(--space-1);
 }
 
 /* ===== Responsivo — Footer =====
@@ -423,12 +349,12 @@
   }
 
   .footer-mockup {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 364px;
-  width: auto;
-  z-index: 1;
-}
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 364px;
+    width: auto;
+    z-index: 1;
+  }
 }

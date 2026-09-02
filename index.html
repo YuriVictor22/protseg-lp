@@ -15,10 +15,10 @@
   <link rel="icon" type="image/png" href="assets/icons/favicon.png?v=2">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=2">
 
-  <!-- Google Fonts: Archivo (display), Inter (corpo), IBM Plex Mono (dados/badges) -->
+  <!-- Google Fonts: Sora (única fonte do projeto, em variações de peso) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/global.css">
@@ -38,33 +38,13 @@
 <body>
 
   <!-- ===================== HEADER ===================== -->
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-      <a href="#inicio" class="logo">
-        <img src="assets/images/logo-protseg.png" alt="PROTSEG - Segurança Eletrônica">
-      </a>
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="#inicio" class="logo">
+      <img src="assets/images/logo-protseg.png" alt="PROTSEG - Segurança Eletrônica">
+    </a>
 
-      <nav class="main-nav" aria-label="Navegação principal">
-        <ul>
-          <li><a href="#solucao">A solução</a></li>
-          <li><a href="#diferencial">Diferencial</a></li>
-          <li><a href="#prova-social">Clientes</a></li>
-          <li><a href="#calculadora">Monte seu sistema</a></li>
-          <li><a href="#faq">Dúvidas</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a href="tel:08007213822" class="btn btn-ghost btn-sm">0800 721 3822</a>
-        <a href="https://wa.me/558230367777?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." class="btn btn-primary btn-sm" target="_blank" rel="noopener">Fale com um especialista</a>
-      </div>
-
-      <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
-        <span class="menu-icon"></span>
-      </button>
-    </div>
-
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegação mobile">
+    <nav class="main-nav" aria-label="Navegação principal">
       <ul>
         <li><a href="#solucao">A solução</a></li>
         <li><a href="#diferencial">Diferencial</a></li>
@@ -72,53 +52,51 @@
         <li><a href="#calculadora">Monte seu sistema</a></li>
         <li><a href="#faq">Dúvidas</a></li>
       </ul>
-      <div class="mobile-menu-actions">
-        <a href="tel:08007213822" class="btn btn-ghost">Ligue<span class="btn-mobile-esconder"> grátis</span> 0800 721 3822</a>
-        <a href="https://wa.me/558230367777?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." class="btn btn-primary" target="_blank" rel="noopener">Fale com um especialista</a>
-      </div>
     </nav>
-  </header>
+
+    <div class="header-actions">
+      <a href="tel:08007213822" class="btn btn-ghost btn-sm">0800 721 3822</a>
+      <a href="https://wa.me/558230367777?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." class="btn btn-primary btn-sm" target="_blank" rel="noopener">Fale com um especialista</a>
+    </div>
+  </div>
+</header>
 
   <main>
 
-    <!-- ===================== 1. HERO ===================== -->
-    <section class="hero" id="inicio">
-      <div class="container hero-inner">
-        <div class="hero-content reveal">
-          <h1>34 anos protegendo o que importa para você.</h1>
-          <p class="hero-subheadline">
-            Monitoramento eletrônico com inteligência artificial, confirmação humana, equipe própria de resposta e aviso à polícia. Presente em quase todo o Brasil, nascido em Alagoas há 34 anos.
-          </p>
+   <!-- ===================== 1. HERO ===================== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <img src="assets/images/hero-protseg-fachada.jpg" alt="" role="presentation">
+    <div class="hero-overlay"></div>
 
-          <div class="hero-ctas">
-            <a href="https://wa.me/558230367777?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-              Fale com um especialista
-            </a>
-            <a href="tel:08007213822" class="btn btn-ghost btn-lg">
-              Ligue<span class="btn-mobile-esconder"> grátis</span> 0800 721 3822
-            </a>
-          </div>
+    <!-- O texto "34 anos protegendo o que importa para você." já
+         está desenhado dentro da foto de fundo. Esse H1 é
+         invisível na tela, mas garante que o Google e leitores
+         de tela continuem enxergando o título real. -->
+    <h1 class="sr-only">34 anos protegendo o que importa para você.</h1>
+  </div>
 
-          <p class="hero-calculadora-link">
-            Não sabe por onde começar? <a href="#calculadora">Monte seu sistema em 3 perguntas →</a>
-          </p>
+  <div class="hero-inner">
+    <div class="hero-card reveal">
+      <p class="hero-card-titulo">Fale agora com um especialista</p>
+      <p class="hero-card-texto">
+        Monitoramento com inteligência artificial, confirmação humana e resposta em campo — descubra a solução ideal pra você.
+      </p>
 
-          <ul class="trust-badges">
-            <!-- PENDENTE: trocar "Nota máxima" pela nota real do Google Meu Negócio -->
-            <li>⭐ Nota máxima no Google</li>
-            <li>Zero reclamações no Reclame Aqui</li>
-            <li>34 anos de mercado</li>
-            <li>Presente em todo o Brasil, exceto SP e RJ</li>
-          </ul>
-        </div>
+      <a href="https://wa.me/558230367777?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        Fale com um especialista
+      </a>
 
-        <div class="hero-media reveal">
-          <div class="mascote-wrapper">
-            <img src="assets/images/mascote-hero.png" alt="Mascote PROTSEG dando joinha">
-          </div>
-        </div>
-      </div>
-    </section>
+      <a href="tel:08007213822" class="hero-card-tel">
+        ou ligue<span class="btn-mobile-esconder"> grátis</span> <strong>0800 721 3822</strong>
+      </a>
+
+      <p class="hero-card-calc-link">
+        Não sabe por onde começar? <a href="#calculadora">Monte seu sistema em 3 perguntas →</a>
+      </p>
+    </div>
+  </div>
+</section>
 
     <!-- ===================== 2. O PROBLEMA ===================== -->
     <section class="problema" id="problema">
