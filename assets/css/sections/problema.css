@@ -1,5 +1,6 @@
 .problema {
-  padding-block: var(--space-7);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-4);
   background-color: var(--color-white);
 }
 
@@ -48,7 +49,7 @@
   }
 
   .problema {
-    padding-top: calc(var(--space-7) + 220px);
+    padding-top: calc(var(--space-7) + 35px);
   }
 }
 
