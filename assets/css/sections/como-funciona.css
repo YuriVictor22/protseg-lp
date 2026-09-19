@@ -1,22 +1,52 @@
 .como-funciona {
   padding-block: var(--space-6);
-  background-color: var(--color-offwhite);
+  background: linear-gradient(180deg, var(--color-red-dark) 0%, var(--color-black) 100%);
 }
 
 .como-funciona h2 {
+  color: var(--color-white);
   margin-bottom: var(--space-5);
 }
 
 .passos-lista {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
 }
 
 .passo-item {
   display: flex;
   flex-direction: column;
   transition-duration: 0.8s;
+}
+
+/* Peso decrescente: o passo 1 (a ação que a pessoa toma agora) fica
+   em destaque total; os passos 2, 3 e 4 ficam visualmente menores e
+   mais discretos, criando hierarquia real em vez de 4 blocos iguais. */
+
+.passo-item:not(:first-child) {
+  opacity: 0.72;
+}
+
+.passo-item:first-child .passo-numero {
+  font-size: 1.375rem;
+  margin-bottom: var(--space-2);
+}
+
+.passo-item:first-child p {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.passo-item:not(:first-child) .passo-numero {
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-1);
+}
+
+.passo-item:not(:first-child) p {
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
 
 /* Escalona a entrada: cada item aparece um pouco depois do anterior,
@@ -44,36 +74,73 @@
   width: fit-content;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 2.75rem;
-  line-height: 1;
-  color: var(--color-black);
-  margin-bottom: var(--space-3);
+  color: var(--color-white);
 }
 
 .passo-numero::after {
   content: '';
   position: absolute;
   left: 2px;
-  bottom: -10px;
+  bottom: -8px;
   width: 22px;
   height: 4px;
   border-radius: 2px;
-  background-color: var(--color-red);
+  background-color: var(--color-white);
 }
 
 .passo-item p {
   margin: 0;
-  color: var(--color-black);
-  font-size: var(--fs-small);
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.passo-item p strong {
+  color: var(--color-white);
+}
+
+.calculadora-intro p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 /* ===== Responsivo — Como Funciona =====
-   Breakpoints oficiais em variables.css */
+   Breakpoints oficiais em variables.css.
+   A partir de 760px: passo 1 ocupa uma coluna larga à esquerda,
+   os passos 2, 3 e 4 empilham numa coluna estreita à direita. */
 
 @media (min-width: 760px) {
   .passos-lista {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-3);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: var(--space-2) var(--space-5);
+  }
+
+  .passo-item:first-child {
+    grid-column: 1;
+    grid-row: 1 / 4;
+  }
+
+  .passo-item:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .passo-item:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .passo-item:nth-child(4) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .passo-item:first-child .passo-numero {
+    font-size: 1.625rem;
+  }
+
+  .passo-item:first-child p {
+    font-size: 1.25rem;
+    max-width: 30ch;
   }
 }

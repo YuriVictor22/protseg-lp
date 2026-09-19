@@ -1,12 +1,21 @@
 .solucao {
-  padding-block: var(--space-7);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-6);
   background-color: var(--color-black);
 }
 
 .solucao h2 {
   color: var(--color-white);
   max-width: 24ch;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.solucao-intro {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 65ch;
+  margin: 0 0 var(--space-6);
 }
 
 .pilares-sequencia {
@@ -71,10 +80,25 @@
 
 /* ===== Responsivo — Solução =====
    Breakpoints oficiais em variables.css.
-   A partir de 980px a sequência vira horizontal: a linha que
-   conectava os pilares passa do lado esquerdo pro topo de cada item. */
+   A partir de 760px o padding-top ganha +35px — essa é a mesma
+   compensação que antes vivia no problema.css, pro card da Hero
+   (que vaza -35px por cima da seção seguinte no desktop) não
+   tampar o título. Como esta seção virou a primeira depois da
+   Hero, a conta migrou pra cá.
+   A partir de 980px a sequência dos pilares vira horizontal. */
+
+@media (min-width: 760px) {
+  .solucao {
+    padding-top: calc(var(--space-7) + 35px);
+    padding-bottom: var(--space-7);
+  }
+}
 
 @media (min-width: 980px) {
+  .solucao h2 {
+    max-width: 26ch;
+  }
+
   .pilares-sequencia {
     flex-direction: row;
     gap: var(--space-3);
