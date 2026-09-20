@@ -27,30 +27,41 @@
   font-weight: 700;
 }
 
-/* ---- Depoimentos: carrossel automático ---- */
+/* ---- Depoimentos: carrossel automático e contínuo, girando pra
+   DIREITA (>>>>). O conteúdo aparece 2x seguidas dentro do track —
+   é o truque padrão pra loop infinito sem "salto" visível: quando a
+   1ª cópia sai de cena, a 2ª (idêntica) já está ocupando o lugar
+   dela, então ninguém percebe a costura. A 2ª cópia tem
+   aria-hidden, pra leitor de tela não ler os depoimentos 2x. ---- */
+
 .depoimentos-carrossel {
   margin-bottom: var(--space-6);
+  overflow: hidden;
 }
 
 .depoimentos-track {
   display: flex;
+  width: max-content;
   gap: var(--space-3);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding: var(--space-1) var(--space-1) var(--space-2);
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  animation: marqueeDireita 38s linear infinite;
 }
 
-.depoimentos-track::-webkit-scrollbar {
-  display: none;
+.depoimentos-carrossel:hover .depoimentos-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeDireita {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 
 .depoimento-card {
   flex: 0 0 auto;
-  width: 85%;
-  scroll-snap-align: start;
+  width: min(85vw, 320px);
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -102,7 +113,12 @@
   border-radius: var(--radius-pill);
 }
 
-/* ---- Logos de clientes ---- */
+/* ---- Logos de clientes: carrossel contínuo girando pra
+   ESQUERDA (<<<<), mesmo truque de loop (conteúdo 2x). Fade sutil
+   nas bordas (mask-image) pra logo não "nascer/morrer" bruscamente
+   na lateral. Logos em preto e branco por padrão, coloridas ao
+   passar o mouse. ---- */
+
 .clientes-logos {
   text-align: center;
 }
@@ -113,22 +129,54 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-graphite-light);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
-.logos-grid {
+.logos-carrossel {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.logos-track {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2) var(--space-4);
+  align-items: center;
+  width: max-content;
+  gap: var(--space-6);
+  animation: marqueeEsquerda 48s linear infinite;
 }
 
-.logos-grid li {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: var(--fs-small);
-  color: var(--color-graphite);
-  opacity: 0.75;
+.logos-carrossel:hover .logos-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeEsquerda {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logos-track img {
+  height: 92px;
+  width: auto;
+  flex-shrink: 0;
+  opacity: 0.9;
+  transition: opacity var(--transition-fast);
+}
+
+.logos-track img:hover {
+  opacity: 1;
+}
+
+/* Respeita quem pede menos movimento no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+  .depoimentos-track,
+  .logos-track {
+    animation: none;
+  }
 }
 
 /* ===== Responsivo — Prova Social =====
@@ -138,18 +186,10 @@
   .selo-reputacao {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .depoimento-card {
-    width: 60%;
-  }
 }
 
 @media (min-width: 1100px) {
   .selo-reputacao {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  .depoimento-card {
-    width: 32%;
   }
 }

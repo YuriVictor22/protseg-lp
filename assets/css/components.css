@@ -81,14 +81,10 @@
 
 /* =========================================================
    Header
-   Mobile: um cartão pequeno flutuante, só com a logo, no canto
-   superior esquerdo, por cima da foto da Hero — sem barra, sem
-   menu, sem botão hambúrguer (decisão do Yuri, LP focada em
-   conversão pelos CTAs da própria página, sem navegação no
-   celular). A partir de 760px volta a ser a barra completa —
-   agora só com logo + botão de WhatsApp, sem menu (também foi
-   simplificado, pra reduzir distração e não competir com os
-   CTAs da própria página).
+   Cartão pequeno flutuante, só com a logo, no canto superior
+   esquerdo, por cima do conteúdo — vale pra todas as telas, sem
+   menu de navegação e sem botão de contato (decisão do Yuri, LP
+   focada em conversão pelos CTAs da própria página).
    ========================================================= */
 
 .site-header {
@@ -109,9 +105,9 @@
    mesma animação ao contrário, é um "pulo" instantâneo pro lado
    esquerdo (via .sem-transicao) seguido de um deslize suave de volta.
    Usa vw (não %) porque o header muda de tamanho entre mobile
-   (cartão pequeno) e desktop (barra inteira) — % seria relativo ao
-   próprio tamanho dele, que varia; vw garante que sempre sai
-   completamente da tela nos dois formatos.
+   (cartão pequeno) e desktop (cartão um pouco maior) — % seria
+   relativo ao próprio tamanho dele, que varia; vw garante que
+   sempre sai completamente da tela nos dois formatos.
    Tudo controlado via JS em initHeaderScroll(). */
 .site-header.is-hidden-right {
   transform: translateX(120vw);
@@ -141,12 +137,6 @@
   width: auto;
 }
 
-.header-actions {
-  display: none;
-  align-items: center;
-  gap: var(--space-2);
-}
-
 /* =========================================================
    Reveal — fade + slide ao rolar a página.
    Some por padrão; o main.js (initReveal) adiciona "is-visible"
@@ -164,116 +154,101 @@
   transform: translateY(0);
 }
 
-/* ===== Responsivo — Header/Nav =====
-   Breakpoints oficiais em variables.css.
-   O cartão vira barra completa aqui em 760px, junto com a Hero
-   (que também troca pro modo "foto de fundo em tela cheia" nesse
-   mesmo breakpoint — os dois precisam mudar juntos). O botão de
-   WhatsApp aparece junto, já que não tem mais menu esperando
-   um breakpoint maior. */
+/* ===== Responsivo — Header =====
+   Breakpoints oficiais em variables.css. */
 
 @media (min-width: 760px) {
-  .site-header {
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--header-height);
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .site-header.is-scrolled {
-    box-shadow: var(--shadow-sm);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .header-inner {
-    height: 100%;
-    max-width: var(--container-width);
-    margin-inline: auto;
-    padding-inline: var(--container-padding);
-    justify-content: space-between;
-  }
-
   .logo img {
-    height: 53px;
-  }
-
-  .header-actions {
-    display: flex;
+    height: 44px;
   }
 }
 
 /* =========================================================
    Footer
    Fundo preto, igual ao "Fechamento" — cria uma transição suave
-   entre as duas últimas seções pretas da página. A partir do
-   tablet, ganha uma imagem decorativa "grudada" no canto inferior
-   direito (a mão com o celular mostrando o Instagram).
+   entre as duas últimas seções pretas da página. 3 colunas: logo
+   + frase, contato (endereço/telefone com ícone), menu+Instagram
+   — com uma linha de copyright separada embaixo.
    ========================================================= */
 
 .site-footer {
-  position: relative;
   background-color: var(--color-black);
   padding-block: var(--space-3);
 }
 
-.footer-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  text-align: center;
+  padding-bottom: var(--space-3);
 }
 
-.footer-conteudo {
+.footer-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-1);
-  width: 100%;
-  text-align: center;
 }
 
 .footer-logo {
-  height: 40px;
+  height: 28px;
   width: auto;
 }
 
-.footer-conteudo nav ul {
+.footer-tagline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 26ch;
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-info svg {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  color: var(--color-red);
+}
+
+.footer-info a {
+  font-weight: 600;
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+}
+
+.footer-info a:hover {
+  color: var(--color-red);
+}
+
+.footer-col-nav nav ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-1) var(--space-3);
+  gap: 0.375rem var(--space-2);
 }
 
-.footer-conteudo nav a {
-  font-size: var(--fs-small);
+.footer-col-nav nav a {
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   transition: color var(--transition-fast);
 }
 
-.footer-conteudo nav a:hover {
+.footer-col-nav nav a:hover {
   color: var(--color-white);
-}
-
-.footer-copy-linha {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  width: 100%;
-  padding-top: var(--space-2);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.footer-copy {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
-  color: rgba(255, 255, 255, 0.45);
 }
 
 .footer-instagram {
@@ -282,57 +257,54 @@
   transition: color var(--transition-fast);
 }
 
+.footer-instagram svg {
+  width: 15px;
+  height: 15px;
+}
+
 .footer-instagram:hover {
   color: var(--color-white);
 }
 
-/* Imagem decorativa: escondida no mobile (não tem espaço sobrando
-   sem brigar com o resto do conteúdo), aparece a partir do tablet */
-.footer-mockup {
-  display: block;
-  height: 130px;
-  width: auto;
-  margin-top: var(--space-1);
+.footer-bottom {
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-copy {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
 }
 
 /* ===== Responsivo — Footer =====
    Breakpoints oficiais em variables.css */
 
 @media (min-width: 760px) {
-  .footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-conteudo {
-    flex: 1 1 auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+  .footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
     text-align: left;
-    padding-right: 340px;
   }
 
-  .footer-conteudo nav ul {
-    flex-direction: row;
-    gap: var(--space-4);
+  .footer-col {
+    align-items: flex-start;
   }
 
-  .footer-copy-linha {
-    width: auto;
-    padding-top: 0;
-    border-top: none;
+  .footer-tagline {
+    max-width: none;
   }
 
-  .footer-mockup {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 364px;
-    width: auto;
-    z-index: 1;
+  .footer-info {
+    justify-content: flex-start;
+  }
+
+  .footer-col-nav {
+    align-items: flex-end;
+  }
+
+  .footer-col-nav nav ul {
+    justify-content: flex-end;
   }
 }

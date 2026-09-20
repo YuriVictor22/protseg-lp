@@ -97,6 +97,10 @@
   color: var(--color-white);
 }
 
+.passo-app-imagem {
+  display: none;
+}
+
 .calculadora-intro p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.55);
@@ -118,6 +122,19 @@
   .passo-item:first-child {
     grid-column: 1;
     grid-row: 1 / 4;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-4);
+  }
+
+  .passo-app-imagem {
+    display: block;
+    max-width: 170px;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
   }
 
   .passo-item:nth-child(2) {
