@@ -4,6 +4,41 @@
   background-color: var(--color-black);
 }
 
+.solucao-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Truque de reordenação (mesmo usado na Hero, pro mascote): no
+   mobile, os filhos de .solucao-conteudo "se soltam" e viram itens
+   soltos do flex pai, o que permite intercalar a imagem entre a
+   introdução e os pilares usando "order". No desktop largo
+   (≥1100px), .solucao-conteudo volta a ser um bloco normal (uma
+   coluna só) e a imagem vira a barra lateral direita. */
+.solucao-conteudo {
+  display: contents;
+}
+
+.solucao-conteudo > h2 {
+  order: 1;
+}
+
+.solucao-intro {
+  order: 2;
+}
+
+.solucao-imagem-wrapper {
+  order: 3;
+}
+
+.pilares-sequencia {
+  order: 4;
+}
+
+.solucao-fechamento {
+  order: 5;
+}
+
 .solucao h2 {
   color: var(--color-white);
   max-width: 24ch;
@@ -16,6 +51,32 @@
   line-height: 1.6;
   max-width: 65ch;
   margin: 0 0 var(--space-6);
+}
+
+/* ---- Imagem da central de monitoramento + brilho suave ---- */
+
+.solucao-imagem-wrapper {
+  position: relative;
+  width: 150px;
+  margin: 0 auto var(--space-6);
+}
+
+.solucao-imagem-glow {
+  position: absolute;
+  inset: -18% -35% -10%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.12) 45%, transparent 75%);
+  filter: blur(22px);
+  z-index: 0;
+}
+
+.solucao-imagem {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 .pilares-sequencia {
@@ -80,12 +141,11 @@
 
 /* ===== Responsivo — Solução =====
    Breakpoints oficiais em variables.css.
-   A partir de 760px o padding-top ganha +35px — essa é a mesma
-   compensação que antes vivia no problema.css, pro card da Hero
-   (que vaza -35px por cima da seção seguinte no desktop) não
-   tampar o título. Como esta seção virou a primeira depois da
-   Hero, a conta migrou pra cá.
-   A partir de 980px a sequência dos pilares vira horizontal. */
+   A partir de 760px o padding-top ganha +35px — compensação do
+   card da Hero, que vaza -35px por cima desta seção no desktop.
+   A partir de 980px a sequência dos pilares vira horizontal.
+   A partir de 1100px (mais largo, pra não brigar com os pilares
+   horizontais) a imagem vira barra lateral à direita. */
 
 @media (min-width: 760px) {
   .solucao {
@@ -120,6 +180,33 @@
 }
 
 @media (min-width: 1100px) {
+  .solucao-layout {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    column-gap: var(--space-6);
+    align-items: center;
+  }
+
+  .solucao-conteudo {
+    display: block;
+  }
+
+  .solucao-conteudo > h2,
+  .solucao-intro,
+  .pilares-sequencia,
+  .solucao-fechamento {
+    order: initial;
+  }
+
+  .solucao-imagem-wrapper {
+    order: initial;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    margin: 0;
+    justify-self: end;
+  }
+
   .solucao h2 {
     max-width: 30ch;
   }

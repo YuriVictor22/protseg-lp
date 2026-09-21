@@ -308,3 +308,28 @@
     justify-content: flex-end;
   }
 }
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding-block: var(--space-2);
+  }
+
+  .footer-grid {
+    gap: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+
+  .footer-logo {
+    height: 24px;
+  }
+
+  .footer-tagline,
+  .footer-info,
+  .footer-col-nav nav a {
+    font-size: 0.75rem;
+  }
+
+  .footer-copy {
+    font-size: 0.625rem;
+  }
+}
