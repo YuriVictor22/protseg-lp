@@ -45,6 +45,10 @@
   margin-bottom: var(--space-4);
 }
 
+.solucao-titulo-destaque {
+  color: var(--color-red);
+}
+
 .solucao-intro {
   color: rgba(255, 255, 255, 0.85);
   font-size: 1.0625rem;
