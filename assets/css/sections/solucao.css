@@ -35,8 +35,12 @@
   order: 4;
 }
 
-.solucao-fechamento {
+.solucao-aluguel {
   order: 5;
+}
+
+.solucao-fechamento {
+  order: 6;
 }
 
 .solucao h2 {
@@ -132,6 +136,50 @@
   margin: 0;
 }
 
+/* ---- Aluguel de equipamentos ---- */
+
+.solucao-aluguel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-left: 3px solid var(--color-red);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.solucao-aluguel-icone {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.solucao-aluguel-icone svg {
+  width: 18px;
+  height: 18px;
+}
+
+.solucao-aluguel h3 {
+  color: var(--color-white);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-1);
+}
+
+.solucao-aluguel p {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--fs-small);
+  margin: 0;
+}
+
 .solucao-fechamento {
   color: rgba(255, 255, 255, 0.85);
   max-width: 60ch;
@@ -181,6 +229,19 @@
     left: 0;
     top: -17px;
   }
+
+  .solucao-aluguel {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .solucao-aluguel-texto {
+    flex: 1;
+  }
+
+  .solucao-aluguel .btn {
+    flex-shrink: 0;
+  }
 }
 
 @media (min-width: 1100px) {
@@ -198,6 +259,7 @@
   .solucao-conteudo > h2,
   .solucao-intro,
   .pilares-sequencia,
+  .solucao-aluguel,
   .solucao-fechamento {
     order: initial;
   }
